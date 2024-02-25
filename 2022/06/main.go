@@ -5,12 +5,11 @@ func find(input string) (index int) {
 	start := 0
 	index = 4
 	l := len(input)
-	m := make(map[rune]bool, 4)
 	for !found {
 		if start+index > l {
 			break
 		}
-		clear(m)
+		m := make(map[rune]bool, 4)
 		found = true
 		s := input[start:index]
 		for _, r := range s {
