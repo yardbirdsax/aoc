@@ -6,23 +6,27 @@ func find(input string) (index int) {
 	index = 4
 	l := len(input)
 	for !found {
-		if start+index > l {
+		if index > l {
 			break
 		}
-		m := make(map[rune]bool, 4)
 		found = true
 		s := input[start:index]
-		for _, r := range s {
-			if m[r] {
+		var bs int
+		for ir := range s {
+			b := 0x1 << (s[ir] % 32)
+			if bs&b == b {
 				found = false
 				break
 			}
-			m[r] = true
+			bs |= b
 		}
 		if !found {
 			start++
 			index++
 		}
+	}
+	if !found {
+		index = -1
 	}
 	return index
 }
